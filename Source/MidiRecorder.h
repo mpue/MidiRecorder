@@ -13,6 +13,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "Logger.h"
 #include <vector>
+#include "RecordListener.h"
 
 class MidiRecorder : public MidiInputCallback, public Timer {
     
@@ -33,8 +34,10 @@ public:
     void stopPlaying();
 
     void setDeviceManager(AudioDeviceManager* manager);
+    void addListener(RecordListener* listener);
     
 private:
+    
     MidiTools::Logger* logger;
     bool recording = false;
     bool playing = false;
@@ -43,7 +46,9 @@ private:
     double startTime = 0;
     int sampleRate = 44100;
     int previousSampleNumber = 0;
-    std::vector<MidiMessage> fuckingMessages;
+    std::vector<MidiMessage> midiMessages;
     int currentMessageIndex = 0;
+    std::vector<RecordListener*> listeners;
     
+    void notifyListeners(RecordListener::StateChange* change);
 };

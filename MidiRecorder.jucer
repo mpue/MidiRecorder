@@ -3,6 +3,8 @@
 <JUCERPROJECT name="MidiRecorder" projectType="guiapp" jucerVersion="5.2.1">
   <MAINGROUP id="eeJoWM" name="MidiRecorder">
     <GROUP id="{2A1E8E06-2811-A2C7-F626-242FFBF9F2B5}" name="Source">
+      <FILE id="MfI0yJ" name="RecordListener.h" compile="0" resource="0"
+            file="Source/RecordListener.h"/>
       <FILE id="v8KiN9" name="Logger.h" compile="0" resource="0" file="Source/Logger.h"/>
       <FILE id="Nqdtri" name="MidiRecorder.cpp" compile="1" resource="0"
             file="Source/MidiRecorder.cpp"/>

@@ -31,6 +31,7 @@ MainComponent::MainComponent()
     deviceManager.addMidiInputCallback("Express  128 Port 7", panel->getRecorder());
     deviceManager.setDefaultMidiOutput("Express  128 Port 7");
     panel->setDeviceManager(&deviceManager);
+    resized();
     
 }
 

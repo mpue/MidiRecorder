@@ -23,6 +23,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "MidiRecorder.h"
 #include "Logger.h"
+#include "RecordListener.h"
 //[/Headers]
 
 
@@ -37,6 +38,7 @@
 */
 class MidiRecorderPanel  : public Component,
                            public MidiTools::Logger,
+                           public RecordListener,
                            public Button::Listener
 {
 public:
@@ -50,12 +52,19 @@ public:
     TextEditor* getTextEditor();
     void log(String message) override;
     void setDeviceManager(AudioDeviceManager* manager);
-
+    void changedState(StateChange* change) override;
+    void incomingMessage(MidiMessage* message) override;
     //[/UserMethods]
 
     void paint (Graphics& g) override;
     void resized() override;
     void buttonClicked (Button* buttonThatWasClicked) override;
+
+    // Binary resources:
+    static const char* led_off_png;
+    static const int led_off_pngSize;
+    static const char* led_on_png;
+    static const int led_on_pngSize;
 
 
 private:
@@ -67,6 +76,8 @@ private:
     ScopedPointer<TextButton> recordButton;
     ScopedPointer<TextButton> playButton;
     ScopedPointer<TextEditor> textEditor;
+    ScopedPointer<TextButton> clearButton;
+    ScopedPointer<ImageButton> midiButton;
 
 
     //==============================================================================
