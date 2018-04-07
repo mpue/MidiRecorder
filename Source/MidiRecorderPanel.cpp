@@ -115,7 +115,7 @@ void MidiRecorderPanel::resized()
     setSize(getParentWidth(), getParentHeight());
     //[/UserPreResize]
 
-    textEditor->setBounds (0, 16 + 40, proportionOfWidth (1.0000f), proportionOfHeight (1.0000f));
+    textEditor->setBounds (proportionOfWidth (0.5000f) - (proportionOfWidth (0.9800f) / 2), 16 + 40, proportionOfWidth (0.9800f), getHeight() - 60);
     midiButton->setBounds (getWidth() - 49, 8, 32, 32);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
@@ -216,12 +216,12 @@ void MidiRecorderPanel::changedState(StateChange *change) {
 }
 
 void MidiRecorderPanel::incomingMessage(juce::MidiMessage *message) {
-    
+
     std::function<void(void)> changeLambda =
     [=]() {  midiButton->setToggleState(true, juce::NotificationType::dontSendNotification); };
     juce::MessageManager::callAsync(changeLambda);
-   
-    
+
+
     std::function<void(void)> off =
     [=]() {
         midiButton->setToggleState(false, juce::NotificationType::dontSendNotification);
@@ -254,9 +254,9 @@ BEGIN_JUCER_METADATA
               virtualName="" explicitFocusOrder="0" pos="176 16 150 24" buttonText="Play"
               connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <TEXTEDITOR name="new text editor" id="82dc0dd72a27e090" memberName="textEditor"
-              virtualName="" explicitFocusOrder="0" pos="0 40 100% 100%" posRelativeY="dfb41700f49db3c7"
-              initialText="" multiline="1" retKeyStartsLine="1" readonly="0"
-              scrollbars="1" caret="1" popupmenu="1"/>
+              virtualName="" explicitFocusOrder="0" pos="49.966%c 40 98.012% 60M"
+              posRelativeY="dfb41700f49db3c7" initialText="" multiline="1"
+              retKeyStartsLine="1" readonly="0" scrollbars="1" caret="1" popupmenu="1"/>
   <TEXTBUTTON name="clearButton" id="3c016c19f5c41efe" memberName="clearButton"
               virtualName="" explicitFocusOrder="0" pos="336 16 150 24" buttonText="Clear sequence"
               connectedEdges="0" needsCallback="1" radioGroupId="0"/>
